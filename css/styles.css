@@ -205,13 +205,11 @@ ul { list-style: none; }
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
 
 /* ---------- Hero Section ---------- */
-.hero {
-  min-height: 100vh;
-  display: flex;
+.hero .container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 72px;
 }
 
 .hero::before {
@@ -290,6 +288,61 @@ ul { list-style: none; }
 
 .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
 
+.hero-image-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1;
+  border-radius: 24px;
+  background: var(--bg-card);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.5s var(--ease);
+}
+
+/* Elegant Accent Border */
+.hero-image::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-1);
+  z-index: -1;
+  border-radius: 26px;
+  opacity: 0.3;
+  transition: opacity 0.5s;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%); /* Subtle professional touch */
+  transition: all 0.5s var(--ease);
+}
+
+.hero-image:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px var(--accent-glow);
+}
+
+.hero-image:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+.hero-image:hover::before {
+  opacity: 0.8;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -346,11 +399,17 @@ ul { list-style: none; }
   border-radius: 24px;
   background: var(--gradient-1);
   display: flex; align-items: center; justify-content: center;
-  font-size: 6rem;
   margin: 0 auto;
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
+  border: 4px solid var(--border);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .about-image::after {
