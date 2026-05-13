@@ -15,11 +15,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const reveals = document.querySelectorAll('.reveal, .reveal-children');
   const skillFills = document.querySelectorAll('.skill-level-fill');
   const contactForm = document.getElementById('contact-form');
+  const spotlight = document.querySelector('.spotlight');
 
-  // ---------- Sticky Navbar on Scroll ----------
+  // ---------- Spotlight Effect ----------
+  window.addEventListener('mousemove', (e) => {
+    spotlight.style.setProperty('--x', `${e.clientX}px`);
+    spotlight.style.setProperty('--y', `${e.clientY}px`);
+  });
+
+  const backToTop = document.getElementById('back-to-top');
+
+  // ---------- Sticky Navbar & Back to Top ----------
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
+    backToTop.classList.toggle('visible', window.scrollY > 300);
     updateActiveNav();
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // ---------- Mobile Hamburger Menu ----------
